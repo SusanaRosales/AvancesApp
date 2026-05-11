@@ -1,0 +1,11 @@
+si se desea que la app corra en dispositivos externos:
+
+- Procurar que esten conectados por medio de cable
+- Que tanto el pc como dispositivo este conectado a la misma red wifi
+- En front/lib/core/api_config revisar que se cumpla:
+static const bool _usePhysicalDevice = true; 
+- Que _myIP sea correcta
+
+Sí se desea correr en Web/Emuladores
+- En front/lib/core/api_config revisar que se cumpla:
+static const bool _usePhysicalDevice = false; 
