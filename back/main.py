@@ -14,6 +14,13 @@ from typing import Any
 import os
 from dotenv import load_dotenv
 
+from exercise_service import (
+    get_exercises_by_body_part,
+    get_all_body_parts,
+    search_exercises_by_name,
+    get_exercises_by_equipment
+)
+
 load_dotenv()
 
 SECRET_KEY = os.getenv("SECRET_KEY", "clave_de_desarrollo_cambiar_en_produccion")
@@ -194,3 +201,19 @@ def login(data: UserDataLogin) -> Any:
             }
     finally:
         connection.close()
+
+@app.get("/exercises/bodyparts")
+def body_parts():
+    return get_all_body_parts()
+
+@app.get("/exercises/bodypart/{body_part}")
+def exercises_by_body_part(body_part: str):
+    return get_exercises_by_body_part(body_part)
+
+@app.get("/exercises/search/{name}")
+def search_exercises(name: str):
+    return search_exercises_by_name(name)
+
+@app.get("/exercises/equipment/{equipment}")
+def exercises_by_equipment(equipment: str):
+    return get_exercises_by_equipment(equipment)
